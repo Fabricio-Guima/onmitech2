@@ -1,0 +1,268 @@
+/*reset*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+li {
+  list-style-type: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  max-width: 960x;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 60px;
+  display: grid;
+  grid-template-areas: "logo ... nav";
+  grid-template-columns: auto 1fr auto;
+  align-content: center;
+}
+
+/*header*/
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  transition: all 0.4s;
+}
+
+/*classes dinâmicas em js para mudar o header*/
+.max-header {
+  background-color: #2574a9;
+  height: 100px;
+}
+
+.min-header {
+  background-color: #c5eff7;
+  height: 80px;
+}
+
+.logo {
+  grid-area: logo;
+}
+
+/*classes dinâmicas em js para mudar atributos da img*/
+.max-logo img {
+  width: 320px;
+  transition: all 0.4s;
+}
+
+.min-logo img {
+  width: 280px;
+  transition: all 0.4s;
+}
+
+.nav-bar {
+  display: grid;
+  grid-area: nav;
+  align-content: center;
+}
+
+.nav-bar ul {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 20px;
+}
+
+.nav-bar ul a {
+  text-transform: uppercase;
+}
+
+/*classes dinâmicas em js para mudar atributos do a*/
+.max-nav a {
+  font-size: 1rem;
+  color: #c5eff7;
+  transition: all 0.4s;
+}
+
+.min-nav a {
+  font-size: 0.875rem;
+  color: #2574a9;
+  transition: all 0.4s;
+}
+
+.ghost {
+  height: 100px;
+  background-color: #cae1f1;
+}
+
+/*menu mobile media query*/
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+    grid-template-areas: "logo ... menu";
+    position: relative;
+  }
+
+  .max-logo img {
+    width: 220px;
+    transition: all 0.4s;
+  }
+
+  .min-logo img {
+    width: 180px;
+    transition: all 0.4s;
+  }
+
+  .menu {
+    grid-area: menu;
+    display: grid;
+    align-content: center;
+  }
+
+  .menu-hamburguer {
+    position: relative;
+    width: 28px;
+    height: 3px;
+  }
+
+  .menu-hamburguer::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #c5eff7;
+    transition: all 0.4s;
+  }
+
+  .menu-hamburguer::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #c5eff7;
+    transition: all 0.4s;
+  }
+
+  .max-hamburguer,
+  .max-hamburguer::before,
+  .max-hamburguer::after {
+    background-color: #c5eff7;
+    transition: all 0.4s;
+  }
+
+  .min-hamburguer,
+  .min-hamburguer::before,
+  .min-hamburguer::after {
+    background-color: #2574a9;
+    transition: all 0.4s;
+  }
+
+  .max-header {
+    height: 80px;
+  }
+
+  .min-header {
+    height: 60px;
+  }
+
+  .nav-bar {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: #2980b9;
+    transform: translateX(-100%);
+    transition: all 0.4s ease-out;
+  }
+
+  .max-nav {
+    top: 80px;
+    left: 0;
+    height: calc(100vh - 80px);
+  }
+
+  .min-nav {
+    top: 60px;
+    left: 0;
+    height: calc(100vh - 60px);
+  }
+
+  /*classes dinâmicas em js para abrir e fechar menu mobile*/
+  .menu-opened {
+    transform: translateX(0);
+  }
+
+  .nav-bar ul {
+    grid-auto-flow: row;
+    grid-gap: 80px;
+    justify-content: center;
+  }
+
+  .nav-bar li {
+    text-align: center;
+  }
+
+  .min-nav a {
+    font-size: 1rem;
+    color: #c5eff7;
+    transition: all 0.4s;
+  }
+}
+/*main section*/
+
+main section {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+main section:nth-child(odd) {
+  height: 100vh;
+  background-color: #cae1f1;
+}
+
+main section:nth-child(even) {
+  height: 100vh;
+  background-color: #b7d5eb;
+}
+
+/*botao que leva ao topo*/
+
+.to-top {
+  background-color: #fff;
+  position: fixed;
+  bottom: 16px;
+  right: 32px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+
+.to-top.active {
+  bottom: 32px;
+  pointer-events: auto;
+  opacity: 1;
+  transition: all 0.4s;
+}
